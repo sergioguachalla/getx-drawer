@@ -6,127 +6,57 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:Scaffold(
-        backgroundColor: Colors.red,
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.white, // Fondo claro para el contenido principal
         appBar: AppBar(
-          title: Text('Menu Drawer'),
+          title: const Text('Menu Drawer'),
+          backgroundColor: Colors.blueGrey, // Un color sólido para la AppBar
         ),
         drawer: Drawer(
-          backgroundColor: Colors.blue,
-          elevation: 20.0,
+          // Elimina el backgroundColor para usar el color por defecto que es más neutro
+          elevation: 16.0,
           child: ListView(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             children: [
-              DrawerHeader(
+              UserAccountsDrawerHeader(
+                // Un widget predefinido que es visualmente atractivo
+                accountName: const Text('Empresa X'),
+                accountEmail: const Text('empresax@gmail.com'),
+                currentAccountPicture: const CircleAvatar(
+                  backgroundImage: AssetImage('assets/images/logo.png'),
+                ),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.amber.shade50, Colors.amber.shade900],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-
-                child: const Stack(
-                  children:[
-                    Align(
-                      alignment: Alignment(0,-0.25),
-                      child: CircleAvatar(
-                        radius: 40,
-                        backgroundImage: AssetImage('assets/images/logo.png'),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment(0,1),
-                      child: Text('X', style: TextStyle(
-                          fontSize: 20,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 10.0,
-                              color: Colors.black,
-                              offset: Offset(5.0, 5.0),
-                            ),
-                          ],
-                          color: Colors.white),),
-                    ),
-                    Align(
-                      alignment: Alignment(0,-1),
-                      child: Text('empresax@gmail.com', style: TextStyle(
-                          fontSize: 15,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 10.0,
-                              color: Colors.black,
-                              offset: Offset(5.0, 5.0),
-                            ),
-                          ],
-                          color: Colors.white),),
-                    ),
-
-                  ],
-                ),
-
-              ),
-              Ink(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.0),
-                  gradient: LinearGradient(
-                    colors: [Colors.teal.shade50, Colors.teal.shade900],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                child: ListTile(
-                  title: Text('Pagina Principal'),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/');
-                  },
-
+                  color: Colors.blueGrey, // Un color sólido es más limpio
                 ),
               ),
-              SizedBox(height: 5),
-              Ink(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.0),
-                  gradient: LinearGradient(
-                    colors: [Colors.teal.shade50, Colors.teal.shade900],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                child: ListTile(
-                  title: Text('Pagina Uno'),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/uno');
-                  },
-
-                ),
+              ListTile(
+                leading: const Icon(Icons.home), // Añade iconos para mejorar la interacción
+                title: const Text('Página Principal'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/');
+                },
               ),
-              SizedBox(height: 5),
-              Ink(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.0),
-                  gradient: LinearGradient(
-                    colors: [Colors.teal.shade50, Colors.teal.shade900],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-                child: ListTile(
-                  title: Text('Pagina Search'),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/search');
-                  },
-
-                ),
-              )
-
-
+              const Divider(), // Separadores para dividir los elementos
+              ListTile(
+                leading: const Icon(Icons.layers),
+                title: const Text('Página Uno'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/uno');
+                },
+              ),
+              const Divider(),
+              ListTile(
+                leading: const Icon(Icons.search),
+                title: const Text('Página Search'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/search');
+                },
+              ),
             ],
           ),
         ),
-
       ),
     );
-
   }
 }
